@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::resource('/karyawan', 'KaryawanController');
+Route::resource('/proyek', 'ProyekController');
+Route::resource('/history', 'HistoryController');
+Route::resource('/laporan', 'LaporanController');
+Route::get('/home', 'HomeController@index')->name('home');
