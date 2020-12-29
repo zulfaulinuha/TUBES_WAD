@@ -10,7 +10,7 @@ class Proyek extends Model
         'nama', 'deatline', 'stakeholder', 'status', 'karyawan_id'
     ];
 
-    public function histores()
+    public function histories()
     {
         return $this->hasMany(\App\History::class,'project_id');   
     }

@@ -7,74 +7,64 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ __('KJA Teddy Alfonso') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link href="{{ asset('template/assets/css/bootstrap.css')}}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{{ asset('template/assets/css/font-awesome.css')}}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{{ asset('template/assets/css/custom.css')}}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url('/')}}" style="font-size: 20px; background-color: #FFA573;">KJA Teddy Alfonso</a>
             </div>
-        </nav>
+            <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px; margin-right: 40px;"> 
+                @guest
+                    <a class="btn btn-primary" title="Edit" href="{{ route('login') }}">
+                        <i class="fa fa-sign-in"></i> {{ __('Login') }}
+                    </a>
+                @else
+                    {{ Auth::user()->name }} &nbsp; 
+                    <a class="btn btn-success square-btn-adjust" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
+                
+            </div>
+            
+        </nav> 
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('template/assets/js/jquery-1.10.2.js')}}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{{ asset('template/assets/js/bootstrap.min.js')}}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{{ asset('template/assets/js/jquery.metisMenu.js')}}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{{ asset('template/assets/js/custom.js')}}"></script>
 </body>
 </html>

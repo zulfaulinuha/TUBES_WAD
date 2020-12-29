@@ -21,4 +21,5 @@ Route::resource('/karyawan', 'KaryawanController');
 Route::resource('/proyek', 'ProyekController');
 Route::resource('/history', 'HistoryController');
 Route::resource('/laporan', 'LaporanController');
+Route::resource('/user', 'UserController');
 Route::get('/home', 'HomeController@index')->name('home');

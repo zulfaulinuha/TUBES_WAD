@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ __('Fakultas Rekayasa Industri') }}</title>
+    <title>{{ __('KJA Teddy Alfonso') }}</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -55,9 +55,6 @@
                     <a class="btn btn-primary" title="Edit" href="{{ route('login') }}">
                         <i class="fa fa-sign-in"></i> {{ __('Login') }}
                     </a>
-                    <a class="btn btn-primary" title="Edit" href="{{ route('register') }}">
-                        <i class="fa fa-sign-in"></i> {{ __('Register') }}
-                    </a>
                 @else
                     {{ Auth::user()->name }} &nbsp; 
                     <a class="btn btn-success square-btn-adjust" href="{{ route('logout') }}"
@@ -68,21 +65,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    {{-- <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-success dropdown-toggle">{{ Auth::user()->name }} <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
-                    </div> --}}
                 @endguest
                 
             </div>
@@ -94,31 +76,27 @@
                     <li class="text-center">
                         <img src="{{ asset('img/logo.png')}}" class="user-image img-responsive"/>
                     </li>
-                    <li>
-                        <a href="{{ route('home')}}"><i class="fa fa-tachometer fa-3x"></i> Dasboard</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('karyawan.index')}}"><i class="fa fa-user fa-3x"></i> Data Karyawan</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('proyek.index')}}"><i class="fa fa-briefcase fa-3x"></i> Data Proyek</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-lock fa-3x"></i> Data Admin</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('history.index')}}"><i class="fa fa-history fa-3x"></i> History Proyek</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-file-text fa-3x"></i> Laporan</a>
-                    </li>
                     @auth
-                        {{-- <li>
-                            <a href="{{ route('strategi.index')}}"><i class="fa fa-book fa-3x"></i> Sasaran Strategis</a>
-                        </li>
                         <li>
-                            <a href="{{ route('tujuan.index')}}"><i class="fa fa-tasks fa-3x"></i> Tujuan</a>
-                        </li> --}}
+                            <a href="{{ route('home')}}"><i class="fa fa-tachometer fa-3x"></i> Dasboard</a>
+                        </li>
+                        @if (Auth::user()->status == "admin")
+                            <li>
+                                <a href="{{ route('karyawan.index')}}"><i class="fa fa-user fa-3x"></i> Data Karyawan</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('proyek.index')}}"><i class="fa fa-briefcase fa-3x"></i> Data Proyek</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('user.index')}}"><i class="fa fa-lock fa-3x"></i> Data Admin</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('history.index')}}"><i class="fa fa-history fa-3x"></i> History Proyek</a>
+                            </li>
+                        @endif
+                        <li>
+                            <a href="{{ route('laporan.index')}}"><i class="fa fa-file-text fa-3x"></i> Laporan</a>
+                        </li>
                     @endauth
                 </ul>
             </div>

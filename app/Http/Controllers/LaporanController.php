@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Laporan;
+use App\Proyek;
 use Illuminate\Http\Request;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class LaporanController extends Controller
 {
@@ -14,7 +16,10 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $laporans = Laporan::get();
+        // $hasil = Post::where('user_id', Auth::User()->id)->get();
+        // dd($projects);
+        return view('laporan/index',compact('laporans'));
     }
 
     /**
@@ -24,7 +29,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        //
+        return view('laporan/create');
     }
 
     /**
@@ -35,7 +40,9 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Laporan::create($request->all());
+
+        return redirect()->route('laporan.index');
     }
 
     /**
@@ -46,7 +53,19 @@ class LaporanController extends Controller
      */
     public function show(Laporan $laporan)
     {
-        //
+        $print = Proyek::with(["histories" => function($query) use($laporan){
+                    $query->whereBetween('histories.tanggal', [$laporan->date_from, $laporan->date_to]);
+                }])
+                ->get();
+
+        dd($print);
+
+        $docpdf = new Html2Pdf('L', 'A4', 'en', true, 'UTF-8');
+		$docpdf->pdf->SetTitle('Laporan Proyek');
+		$docpdf->writeHTML(view('laporan.pdf', compact('print', 'laporan')));
+        $docpdf->output('laporan-project.pdf');
+        
+		return redirect()->route('laporan.index');
     }
 
     /**
@@ -80,6 +99,7 @@ class LaporanController extends Controller
      */
     public function destroy(Laporan $laporan)
     {
-        //
+        $laporan->delete();
+        return redirect()->route('laporan.index');
     }
 }
