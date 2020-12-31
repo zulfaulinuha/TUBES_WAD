@@ -17,9 +17,13 @@
                         <form method="POST" action="{{route('proyek.store')}}" >
                             @csrf 
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label><strong>Nama</strong></label>
                                     <input type="text" class="form-control" placeholder="Nama" name="nama" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label><strong>Deadline</strong></label>
+                                    <input type="date" class="form-control" placeholder="Deatline" name="deatline" required>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -36,21 +40,7 @@
                                     <label><strong>Stakeholder</strong></label>
                                     <input type="text" class="form-control" placeholder="Stakeholder" name="stakeholder" required>
                                 </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label><strong>Deadline</strong></label>
-                                    <input type="date" class="form-control" placeholder="Deatline" name="deatline" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label><strong>Status</strong></label>
-                                    <select class="form-control" name="status" required>
-                                        <option selected value="">~~Pilih Status~~</option>
-                                        <option value="Survei">Survei</option>
-                                        <option value="Analisis">Analisis</option>
-                                        <option value="Penyelesaian">Penyelesaian</option>
-                                    </select>
-                                </div>
+                                <input type="hidden" value="Pembuatan" name="status" required>
                             </div>
                             <br>
                             <div class="form-row">

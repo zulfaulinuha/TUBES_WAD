@@ -23,13 +23,14 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label><strong>Date From</strong></label>
-                                    <input type="date" class="form-control" placeholder="Tanggal" name="date_from" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label><strong>Date To</strong></label>
-                                    <input type="date" class="form-control" placeholder="Tanggal" name="date_to" required>
+                                <div class="form-group col-md-12">
+                                    <label><strong>Nama Proyek</strong></label>
+                                    <select class="form-control" name="project_id" required>
+                                        <option selected value="">~~Pilih Project~~</option>
+                                        @foreach($projects as $project)
+                                            <option value="{{$project->id}}">{{$project->id}} : {{$project->nama}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <br>

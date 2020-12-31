@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Karyawan;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -91,7 +92,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $karyawans = Karyawan::get();
+        return view('user.edit',compact('karyawans','user'));
     }
 
     /**
@@ -103,7 +105,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        // dd($request);
+        $user = User::findOrFail($user->id);
+    
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        $input = $request->only('name','email');
+        Auth::user()->update($input);
+        
+        return redirect()->route('home');
     }
 
     /**

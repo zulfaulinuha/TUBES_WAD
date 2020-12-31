@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Laporan extends Model
 {
     protected $fillable = [
-        'nama', 'date_from', 'date_to',
+        'nama', 'project_id',
     ];
 
-    public function laporanProjects()
+    public function project()
     {
-        return $this->hasMany(\App\Laporan_Proyek::class,'laporan_id');   
+        return $this->belongsTo(\App\Proyek::class,'project_id');   
     }
 }

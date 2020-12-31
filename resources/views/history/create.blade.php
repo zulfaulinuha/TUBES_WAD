@@ -14,10 +14,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Form Tambah</div>
                     <div class="panel-body">
-                        <form method="POST" action="{{route('history.store')}}" >
+                        <form method="POST" action="{{route('history.store')}}" enctype="multipart/form-data">
                             @csrf 
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label><strong>Nama</strong></label>
                                     <select class="form-control" name="project_id" required>
                                         <option selected value="">~~Pilih Project~~</option>
@@ -26,6 +26,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label><strong>Laporan</strong> (Max 2MB)</label>
+                                    <input type="file" accept="application/pdf,application/vnd.ms-excel" class="form-control"  name="laporan">
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -33,7 +37,7 @@
                                     <input type="date" class="form-control" placeholder="Tanggal" name="tanggal" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label><strong>Jenis Kelamin</strong></label>
+                                    <label><strong>Status Project</strong></label>
                                     <select class="form-control" name="status" required>
                                         <option selected value="">~~Pilih Status~~</option>
                                         <option value="Survei">Survei</option>

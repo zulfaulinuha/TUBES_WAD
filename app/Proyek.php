@@ -15,6 +15,11 @@ class Proyek extends Model
         return $this->hasMany(\App\History::class,'project_id');   
     }
 
+    public function laporans()
+    {
+        return $this->hasMany(\App\Laporan::class,'project_id');   
+    }
+
     public function karyawan()
     {
         return $this->belongsTo(\App\Karyawan::class,'karyawan_id');   

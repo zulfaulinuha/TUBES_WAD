@@ -17,6 +17,7 @@ class CreateHistoriesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('project_id');
             $table->date('tanggal');
+            $table->string('laporan', 191);
             $table->enum('status', ['Survei', 'Analisis', 'Penyelesaian']);
             $table->timestamps();
         });

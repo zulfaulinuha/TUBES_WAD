@@ -4,9 +4,9 @@
 <div id="page-wrapper" style="min-height: 570px;">
     <div id="page-inner" style="min-height: 0px;">
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-6">           
+            <div class="col-md-4 col-sm-6 col-xs-6">           
                 <div class="panel panel-back noti-box">
-                    <span class="icon-box bg-color-red set-icon">
+                    <span class="icon-box set-icon">
                         <i class="fa fa-user-o"></i>
                     </span>
                     <div class="text-box" >
@@ -15,9 +15,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">           
+            <div class="col-md-4 col-sm-6 col-xs-6">           
                 <div class="panel panel-back noti-box">
-                    <span class="icon-box bg-color-green set-icon">
+                    <span class="icon-box set-icon">
                         <i class="fa fa-briefcase"></i>
                     </span>
                     <div class="text-box" >
@@ -26,9 +26,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-6">           
+            <div class="col-md-4 col-sm-6 col-xs-6">           
                 <div class="panel panel-back noti-box">
-                    <span class="icon-box bg-color-blue set-icon">
+                    <span class="icon-box bg-color-pink-red set-icon">
                         <i class="fa fa-file-text-o"></i>
                     </span>
                     <div class="text-box" >

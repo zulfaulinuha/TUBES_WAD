@@ -10,13 +10,22 @@ use Spipu\Html2Pdf\Html2Pdf;
 class LaporanController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $laporans = Laporan::get();
+        $laporans = Laporan::with('project')->get();
         // $hasil = Post::where('user_id', Auth::User()->id)->get();
         // dd($projects);
         return view('laporan/index',compact('laporans'));
@@ -29,7 +38,8 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        return view('laporan/create');
+        $projects = Proyek::get();
+        return view('laporan/create',compact('projects'));
     }
 
     /**
@@ -53,14 +63,11 @@ class LaporanController extends Controller
      */
     public function show(Laporan $laporan)
     {
-        $print = Proyek::with(["histories" => function($query) use($laporan){
-                    $query->whereBetween('histories.tanggal', [$laporan->date_from, $laporan->date_to]);
-                }])
-                ->get();
+        $print = Proyek::with("histories", "karyawan")->get();
 
-        dd($print);
+        // dd($print);
 
-        $docpdf = new Html2Pdf('L', 'A4', 'en', true, 'UTF-8');
+        $docpdf = new Html2Pdf('P', 'A4', 'en', true, 'UTF-8');
 		$docpdf->pdf->SetTitle('Laporan Proyek');
 		$docpdf->writeHTML(view('laporan.pdf', compact('print', 'laporan')));
         $docpdf->output('laporan-project.pdf');

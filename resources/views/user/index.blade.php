@@ -36,17 +36,14 @@
                                 <td>{{ $user->karyawan->nama}}</td>
                                 <td>
                                     <form action="{{ route('user.destroy',$user->id) }}" method="POST">
-                        
-                                        <a class="btn btn-primary btn-sm" title="Edit" href="{{ route('user.edit',$user->id) }}">
-                                            <i class="fa fa-pencil-square-o"></i>
-                                        </a>
-                        
-                                        @csrf
-                                        @method('DELETE')
-                        
-                                        <button type="submit" class="btn btn-danger btn-sm" title="Delete">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        @if ($user->status == "petinggi" || $user->id == Auth::user()->id)
+                                            @csrf
+                                            @method('DELETE')
+                            
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        @endif
                                     </form>
                                 </td>
                             </tr>

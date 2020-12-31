@@ -14,12 +14,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Form Edit</div>
                     <div class="panel-body">
-                        <form method="POST" action="{{ route('history.update',$history->id) }}" >
+                        <form method="POST" action="{{ route('history.update',$history->id) }}" enctype="multipart/form-data">
                             @csrf 
                             @method('PUT')
     
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label><strong>Nama Proyek</strong></label>
                                     <select class="form-control" name="project_id" required>
                                         <option selected value="">~~Pilih Project~~</option>
@@ -31,6 +31,10 @@
                                             @endif
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label><strong>Laporan</strong>  (Max 2MB)</label>
+                                    <input type="file" accept="application/pdf,application/vnd.ms-excel" class="form-control"  name="laporan" required>
                                 </div>
                             </div>
                             <div class="form-row">

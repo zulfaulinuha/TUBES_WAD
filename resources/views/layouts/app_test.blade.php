@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ asset('img/Logo.png') }}" type="image/x-icon">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -57,6 +58,7 @@
                     </a>
                 @else
                     {{ Auth::user()->name }} &nbsp; 
+                    <a class="btn btn-primary square-btn-adjust" href="{{ route('user.edit',Auth::user()->id) }}">Edit Profile</a> &nbsp; 
                     <a class="btn btn-success square-btn-adjust" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">

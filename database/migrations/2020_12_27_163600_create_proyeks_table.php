@@ -18,7 +18,7 @@ class CreateProyeksTable extends Migration
             $table->string('nama', 191);
             $table->date('deatline');
             $table->string('stakeholder', 100);
-            $table->enum('status', ['Survei', 'Analisis', 'Penyelesaian']);
+            $table->enum('status', ['Pembuatan','Survei', 'Analisis', 'Penyelesaian']);
             $table->unsignedInteger('karyawan_id');
             $table->timestamps();
         });

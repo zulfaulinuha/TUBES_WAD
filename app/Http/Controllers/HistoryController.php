@@ -49,7 +49,20 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        History::create($request->all());
+        $history = new History();
+
+        
+        if ($files = $request->file('laporan')) {
+            $destinationPath = public_path("/storage/file/$request->project_id/"); // upload path
+            $fileName = date('YmdHis') . "." . $files->getClientOriginalName();
+            $files->move($destinationPath, $fileName);
+            $history->laporan = $fileName;
+        }
+
+        $history->project_id = $request->project_id;
+        $history->tanggal = $request->tanggal;
+        $history->status = $request->status;
+        $history->save();
 
         $project = Proyek::findOrFail($request->project_id);
         $project->status = $request->status;
@@ -91,6 +104,20 @@ class HistoryController extends Controller
     public function update(Request $request, History $history)
     {
         $history->update($request->all());
+        
+        $history = History::findOrFail($history->id);
+        
+        if ($files = $request->file('laporan')) {
+            $destinationPath = public_path("/storage/file/$request->project_id/"); // upload path
+            $fileName = date('YmdHis') . "." . $files->getClientOriginalName();
+            $files->move($destinationPath, $fileName);
+            $history->laporan = $fileName;
+        }
+
+        $history->project_id = $request->project_id;
+        $history->tanggal = $request->tanggal;
+        $history->status = $request->status;
+        $history->save();
 
         $project = Proyek::findOrFail($request->project_id);
         $project->status = $request->status;

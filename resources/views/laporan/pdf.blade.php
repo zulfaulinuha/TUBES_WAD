@@ -14,14 +14,14 @@
 			<td>
 				<img src="img/logo.png" height="60" alt="User Image">
 			</td>
-			<td style="width: 75px;"></td>
-			<td style="width: 550px;">
-				<div style="size: 10px; text-align: center;"><b>REPORT ASSET<br>
-					FAKULTAS REKAYASA INDUSTRI<br>
-					TEKNIK INDUSTRI - TELKOM UNIVERSITY</b>
+			<td style="width: 100px;"></td>
+			<td style="width: 400px;">
+				<div style="size: 10px; text-align: center;"><b>REPORT PROYEK<br>
+					KANTOR JASA AKUNTAN<br>
+					TEDDY ALFONSO</b>
 				</div>
 				<div style="size: 8px;">
-					Jl Telekomunikasi No.1 Terusan Buah Batu, Gedung Karang, Bandung, Jawa Barat 40257
+					IZIN USAHA : SK MENKEU RI NOMOR 428/KM.1PPPK/2018
 				</div>
 			</td>
 		</tr>
@@ -29,29 +29,43 @@
 	<hr>
 	<br>
 	<div id="content">
+		<h3 align="center">Laporan {{$laporan->nama}}</h3>
+		<table>
+			<tr>
+				<td>Nama Project </td>
+				<td>{{$print[0]->nama}} </td>
+			</tr>
+			<tr>
+				<td>Stakeholder Project </td>
+				<td>{{$print[0]->stakeholder}} </td>
+			</tr>
+			<tr>
+				<td>PIC Project </td>
+				<td>{{$print[0]->karyawan->nama}} </td>
+			</tr>
+			<tr>
+				<td>Deatline Project </td>
+				<td>{{$print[0]->deatline}} </td>
+			</tr>
+			<tr>
+				<td>Status Project </td>
+				<td>{{$print[0]->status}} </td>
+			</tr>
+		</table>
+		<br>
 		<table border="1" style="border-collapse: collapse;">
 			<tr align="center">
 				<th style="width: 40px;">NO</th>
-				<th style="width: 225px;">Instansi</th>
-				<th style="width: 120px;">Hardware Type</th>
-				<th style="width: 130px;">Serial Number</th>
-				<th style="width: 100px;">Jenis</th>
-				<th style="width: 100px;">Tgl. Pembelian</th>
-				<th style="width: 125px;">Harga</th>
-				<th style="width: 100px;">Jangka Waktu</th>
-				<th style="width: 110px;">Status</th>
+				<th style="width: 100px;">Tanggal</th>
+				<th style="width: 100px;">Proggress</th>
+				<th style="width: 130px;">Laporan</th>
 			</tr>
-			@foreach($asset as $key => $value)
+			@foreach($print[0]->histories as $key => $value)
 			<tr>
 				<td align="center">{{ $key+1 }}</td>
-				<td>{{ $value->cabang->name}}</td>
-				<td>{{ $value->hardware_type }}</td>
-				<td>{{ $value->serial_number }}</td>
-				<td>{{ $value->jenis->name }}</td>
-				<td>{{ date('d-m-Y', strtotime($value->tanggal_pembelian)) }}</td>
-				<td>Rp {{number_format($value->harga, 0, ',', '.')}}</td>
-				<td>{{ date('d-m-Y', strtotime($value->jangka_waktu)) }}</td>
-				<td>{{ $value->status->name}}</td>
+				<td>{{ date('d-m-Y', strtotime($value->tanggal)) }}</td>
+				<td>{{ $value->status}}</td>
+				<td><a href="{{ asset("storage/file/$value->project_id/$value->laporan")}}" target="_blank"">File</a></td>
 			</tr>
 			@endforeach
 		</table>

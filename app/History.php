@@ -7,13 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class History extends Model
 {
     protected $fillable = [
-        'project_id', 'tanggal', 'status',
+        'project_id', 'tanggal', 'status', 'laporan',
     ];
-
-    public function laporanProjects()
-    {
-        return $this->hasMany(\App\Laporan_Proyek::class,'history_id');   
-    }
 
     public function project()
     {

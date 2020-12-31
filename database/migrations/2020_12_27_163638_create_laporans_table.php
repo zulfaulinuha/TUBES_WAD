@@ -16,8 +16,7 @@ class CreateLaporansTable extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama', 191);
-            $table->date('date_from');
-            $table->date('date_to');
+            $table->unsignedInteger('project_id');
             $table->timestamps();
         });
     }

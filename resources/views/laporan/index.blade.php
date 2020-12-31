@@ -24,8 +24,7 @@
                             <tr>
                                 <th>ID Laporan</th>
                                 <th>Nama Laporan</th>
-                                <th>Date From</th>
-                                <th>Date To</th>
+                                <th>Nama Proyek</th>
                                 <th width="200px">Action</th>
                             </tr>
                         </thead>
@@ -34,12 +33,11 @@
                             <tr>
                                 <td>{{ $laporan->id }}</td>
                                 <td>{{ $laporan->nama}}</td>
-                                <td>{{ $laporan->date_from}}</td>
-                                <td>{{ $laporan->date_to}}</td>
+                                <td>{{ $laporan->project->nama}}</td>
                                 <td>
                                     <form action="{{ route('laporan.destroy',$laporan->id) }}" method="POST">
     
-                                        <a class="btn btn-info btn-sm" title="Show" href="{{ route('laporan.show',$laporan->id) }}">
+                                        <a class="btn btn-info btn-sm" title="Show" href="{{ route('laporan.show',$laporan->id) }}" target="_blank">
                                             <i class="fa fa-print" style="color: white;"></i> Print
                                         </a>
                     

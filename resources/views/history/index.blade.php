@@ -23,7 +23,8 @@
                                 <th>Nama Proyek</th>
                                 <th>Tanggal History</th>
                                 <th>Status</th>
-                                <th width="150px">Action</th>
+                                <th>Laporan</th>
+                                <th width="100px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +35,15 @@
                                 <td>{{ $history->project->nama}}</td>
                                 <td>{{ $history->tanggal}}</td>
                                 <td>{{ $history->status}}</td>
+                                <td>
+                                    @if ($history->laporan === null)
+                                        <h5>Tidak ada berkas</h5>
+                                    @else
+                                        <a class="btn btn-info btn-sm" href="{{ asset("storage/file/$history->project_id/$history->laporan")}}" target="_blank">
+                                            <i class="fa fa-file-text" style="color: white;"></i> File
+                                        </a>
+                                    @endif
+                                </td>
                                 <td>
                                     <form action="{{ route('history.destroy',$history->id) }}" method="POST">
                         
