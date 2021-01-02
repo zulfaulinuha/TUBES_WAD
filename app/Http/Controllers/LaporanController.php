@@ -63,7 +63,8 @@ class LaporanController extends Controller
      */
     public function show(Laporan $laporan)
     {
-        $print = Proyek::with("histories", "karyawan")->get();
+        $print = Proyek::with("histories", "karyawan")->
+                        where('id','=',$laporan->project_id)->get();
 
         // dd($print);
 
